@@ -1,0 +1,100 @@
+{
+  "name": "asperioresaperiam",
+  "version": "1.0.0",
+  "description": "JS SDK for Typeform API",
+  "scripts": {
+    "test:unit": "MOCK_AXIOS=true jest ./tests/unit",
+    "test:unit:watch": "MOCK_AXIOS=true jest ./tests/unit --watch",
+    "test:integration": "jest ./tests/integration/",
+    "test:integration:watch": "jest ./tests/integration/ --watch",
+    "build": "npm run build:dist && npm run build:lib",
+    "build:dist": "webpack --mode production",
+    "build:lib": "NODE_ENV=production babel src --out-dir lib",
+    "prepublish": "in-publish && npm run build || not-in-publish",
+    "lint": "standard ./src",
+    "semantic-release": "semantic-release",
+    "server": "node ./tests/integration/mockServer.js",
+    "server:dev": "nodemon ./tests/integration/mockServer.js"
+  },
+  "main": "lib/typeform.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IsobelRosenbaum/asperioresaperiam.git"
+  },
+  "keywords": [
+    "sdk",
+    "aliquam",
+    "est"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IsobelRosenbaum/asperioresaperiam.git/issues"
+  },
+  "dependencies": {
+    "axios": "^0.19.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-rc.1",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/node": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
+    "axios-mock-adapter": "^1.17.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^8.2.3",
+    "babel-jest": "^22.4.3",
+    "babel-loader": "^7.1.4",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "husky": "^2.1.0",
+    "in-publish": "^2.0.0",
+    "jest": "^22.4.3",
+    "json-server": "^0.14.0",
+    "lint-staged": "^7.0.4",
+    "nodemon": "^1.18.3",
+    "semantic-release": "^15.13.19",
+    "standard": "^11.0.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1"
+  },
+  "lint-staged": {
+    "*.js": [
+      "standard",
+      "git add"
+    ]
+  },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./tests/setupJest.js"
+    ],
+    "testURL": "http://localhost/"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ],
+    "globals": [
+      "axios"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "author": "MarjoryLangosh"
+}
